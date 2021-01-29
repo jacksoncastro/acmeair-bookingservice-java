@@ -32,11 +32,11 @@ public class BookingLivenessHealthCheck implements HealthCheck {
   
   @Inject
   @ConfigProperty(name = "SYS_APP_HOSTNAME", defaultValue="localhost")
-  private String hostname;
+  String hostname;
   
   @Inject
   @ConfigProperty(name = "SYS_APP_PORT", defaultValue="9080")
-  private int port;
+  int port;
 
   public HealthCheckResponse call() {
     

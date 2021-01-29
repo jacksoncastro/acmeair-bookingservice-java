@@ -1,0 +1,23 @@
+kumuluzee:
+  name: acmeair-bookingservice-java
+  env:
+    name: dev
+  server:
+    http:
+      port: 9080
+    context-path: /booking
+  opentracing:
+    jaeger:
+      service-name: jaeger-service
+      agent-host: jaeger
+      reporter:
+        log-spans: false
+      sampler: 
+        type: const 
+        param: 1
+
+mp:
+  jwt:
+    verify:
+      issuer: http://acmeair-ms
+      publickey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqwCo7WUXrP7PX/BqE9q18XraSFgVy1+4v21Ksi5aF4rrzSs53W3PkNgDEY2VJjBPjlXf0od1ngzOOYwuaTmMO0kpKin7lSGRYoI9MWCcQAjAPre95B2bx47sODUEPXOxPb4PgC5eeC8ks7ZgU0SNSlJAjcQOEHsFQvzaBMI9ZMRZYVOq6T6b1bxsBDAOarkzO0QZVo4KChy0Oa9i4aRR6ZAERLHqdY8/MDm/Fs6Ad8hJ3793BhvrSkkMjykwM4/DeXCSeSF8N242BqMT8gnwnj5Eyssw1dSYa8I60otxGgDLyqBI5oDlKdfqo9bYplAvlS55rXOzVekqfjp8A705tQIDAQAB

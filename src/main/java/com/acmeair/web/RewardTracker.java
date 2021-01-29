@@ -23,11 +23,11 @@ public class RewardTracker {
 
   @Inject
   @RestClient
-  private CustomerClient customerClient;
+  CustomerClient customerClient;
 
   @Inject
   @RestClient
-  private FlightClient flightClient;
+  FlightClient flightClient;
     
   //TODO: For now, use the Fault Tolerance to make this done async.
   @Timeout(500) //throws a timeout exception if method does not return withing 400 ms

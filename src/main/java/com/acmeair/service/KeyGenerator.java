@@ -16,6 +16,9 @@
 
 package com.acmeair.service;
 
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class KeyGenerator {
 
   public Object generate() {

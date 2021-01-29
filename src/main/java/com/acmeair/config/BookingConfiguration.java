@@ -16,6 +16,8 @@
 
 package com.acmeair.config;
 
+import javax.annotation.security.PermitAll;
+
 import com.acmeair.service.BookingService;
 
 import java.util.logging.Logger;
@@ -30,6 +32,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/config")
+@PermitAll
 public class BookingConfiguration {
 
   Logger logger = Logger.getLogger(BookingConfiguration.class.getName());

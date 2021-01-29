@@ -1,0 +1,30 @@
+# A project defaults for use with MP-JWT auth-method
+# Based on https://github.com/MicroProfileJWT/wfswarm-jwt-auth-tck/blob/master/src/main/resources/project-defaults.yml
+thorntail:
+  microprofile:
+    jwt:
+      default-missing-method-permissions-deny-access: false
+      token:
+        issued-by: "org.eclipse.microprofile12"
+  logging:
+    loggers:
+      io.undertow.request.security:
+        level: SEVERE
+    root-logger:
+      level: WARN
+  security:
+    security-domains:
+      MP-JWT:
+        jaspi-authentication:
+          login-module-stacks:
+            roles-lm-stack:
+              login-modules:
+                - login-module: rm
+                  code: org.wildfly.swarm.microprofile.jwtauth.deployment.auth.jaas.JWTLoginModule
+                  flag: required
+          auth-modules:
+            http:
+              code: org.wildfly.extension.undertow.security.jaspi.modules.HTTPSchemeServerAuthModule
+              module: org.wildfly.extension.undertow
+              flag: required
+              login-module-stack-ref: roles-lm-stack

@@ -17,6 +17,7 @@
 package com.acmeair.service;
 
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
 public interface BookingService {
 

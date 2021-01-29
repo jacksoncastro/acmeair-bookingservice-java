@@ -16,6 +16,7 @@
 
 package com.acmeair.config;
 
+import javax.annotation.security.PermitAll;
 import com.acmeair.loader.BookingLoader;
 
 import javax.inject.Inject;
@@ -27,10 +28,11 @@ import javax.ws.rs.core.Response;
 
 
 @Path("/loader")
+@PermitAll
 public class BookingLoaderRest {
 
   @Inject
-  private BookingLoader loader;
+  BookingLoader loader;
 
   @GET
   @Path("/load")

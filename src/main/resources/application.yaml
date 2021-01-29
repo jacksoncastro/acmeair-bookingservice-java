@@ -1,0 +1,13 @@
+#mp.jwt.verify.issuer: http://acmeair-ms
+#mp.jwt.verify.publickey: eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsImtpZCI6ImI5MjVkYzVkLWZmYjgtNDQ4OS04NDg4LWIzNjA1ZDdkYTEwOCIsIm4iOiJxd0NvN1dVWHJQN1BYX0JxRTlxMThYcmFTRmdWeTEtNHYyMUtzaTVhRjRycnpTczUzVzNQa05nREVZMlZKakJQamxYZjBvZDFuZ3pPT1l3dWFUbU1PMGtwS2luN2xTR1JZb0k5TVdDY1FBakFQcmU5NUIyYng0N3NPRFVFUFhPeFBiNFBnQzVlZUM4a3M3WmdVMFNOU2xKQWpjUU9FSHNGUXZ6YUJNSTlaTVJaWVZPcTZUNmIxYnhzQkRBT2Fya3pPMFFaVm80S0NoeTBPYTlpNGFSUjZaQUVSTEhxZFk4X01EbV9GczZBZDhoSjM3OTNCaHZyU2trTWp5a3dNNF9EZVhDU2VTRjhOMjQyQnFNVDhnbnduajVFeXNzdzFkU1lhOEk2MG90eEdnREx5cUJJNW9EbEtkZnFvOWJZcGxBdmxTNTVyWE96VmVrcWZqcDhBNzA1dFEifQ==
+
+
+security:
+  providers:
+    - mp-jwt-auth:
+        atn-token:
+tracing:
+    service: "helidon-service"
+    log-spans: false
+    sampler-param: 1
+    sampler-type: const

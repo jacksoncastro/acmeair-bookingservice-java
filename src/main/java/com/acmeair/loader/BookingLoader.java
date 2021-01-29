@@ -21,7 +21,9 @@ import com.acmeair.service.BookingService;
 import java.util.logging.Logger;
 import javax.inject.Inject;
 
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class BookingLoader {
 
   @Inject

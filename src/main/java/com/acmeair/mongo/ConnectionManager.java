@@ -52,66 +52,66 @@ public class ConnectionManager implements MongoConstants {
     
   @Inject 
   @ConfigProperty(name = "MONGO_HOST", defaultValue = "localhost") 
-  private String mongoHost;
+  String mongoHost;
   
   @Inject 
   @ConfigProperty(name = "MONGO_PORT", defaultValue = "27017") 
-  private Integer mongoPort;
+  Integer mongoPort;
   
   @Inject 
   @ConfigProperty(name = "MONGO_DBNAME", defaultValue = "acmeair_flightdb") 
-  private String mongoDbName;
+  String mongoDbName;
   
   @Inject 
   @ConfigProperty(name = "MONGO_USERNAME") 
-  private Optional<String> mongoUsername;
+  Optional<String> mongoUsername;
   
   @Inject 
   @ConfigProperty(name = "MONGO_PASSWORD") 
-  private Optional<String> mongoPassword;
+  Optional<String> mongoPassword;
     
   @Inject 
   @ConfigProperty(name = "MONGO_SSL_ENABLED") 
-  private Optional<Boolean> mongoSslEnabled;
+  Optional<Boolean> mongoSslEnabled;
   
   @Inject 
   @ConfigProperty(name = "MONGO_MIN_CONNECTIONS_PER_HOST") 
-  private Optional<Integer> mongoMinConnectionsPerHost;
+  Optional<Integer> mongoMinConnectionsPerHost;
   
   @Inject 
   @ConfigProperty(name = "MONGO_CONNECTIONS_PER_HOST") 
-  private Optional<Integer> mongoConnectionsPerHost;
+  Optional<Integer> mongoConnectionsPerHost;
   
   @Inject 
   @ConfigProperty(name = "MONGO_MAX_WAIT_TIME") 
-  private Optional<Integer> mongoMaxWaitTime;
+  Optional<Integer> mongoMaxWaitTime;
   
   @Inject 
   @ConfigProperty(name = "MONGO_CONNECT_TIME_OUT") 
-  private Optional<Integer> mongoConnectTimeOut;
+  Optional<Integer> mongoConnectTimeOut;
   
   @Inject 
   @ConfigProperty(name = "MONGO_SOCKET_TIME_OUT") 
-  private Optional<Integer> mongoSocketTimeOut;
+  Optional<Integer> mongoSocketTimeOut;
   
   @Inject 
   @ConfigProperty(name = "MONGO_THREADS_ALLOWED_TO_BLOCK_FOR_CONNECTION_MULTIPLIER") 
-  private Optional<Integer> mongoThreadsAllowedToBlockForConnectionMultiplier;
+  Optional<Integer> mongoThreadsAllowedToBlockForConnectionMultiplier;
   
   @Inject 
   @ConfigProperty(name = "MONGO_MAX_CONNECTION_IDLE_TIME") 
-  private Optional<Integer> mongoMaxConnectionIdleTime;
+  Optional<Integer> mongoMaxConnectionIdleTime;
   
   @Inject 
   @ConfigProperty(name = "MONGO_SOCKET_KEEPALIVE") 
-  private Optional<Boolean> mongoSocketKeepalive;
+  Optional<Boolean> mongoSocketKeepalive;
   
   @Inject 
   @ConfigProperty(name = "VCAP_SERVICES") 
   Optional<String> vcapJsonString;
 
   @PostConstruct
-  private void initialize() {     
+  void initialize() {     
 
     ServerAddress dbAddress = null;
     MongoClientOptions.Builder options = new MongoClientOptions.Builder();

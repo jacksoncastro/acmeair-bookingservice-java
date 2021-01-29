@@ -33,23 +33,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.bson.Document;
 
 import org.eclipse.microprofile.opentracing.Traced;
 
-import io.opentracing.Span;
-import io.opentracing.Tracer;
+//import io.opentracing.Span;
+//import io.opentracing.Tracer;
 
+@ApplicationScoped
 public class BookingServiceImpl implements BookingService, MongoConstants {
 
   private static final  Logger logger = Logger.getLogger(BookingService.class.getName());
 
   private MongoCollection<Document> bookingCollection;
 
-  @Inject
-  Tracer configuredTracer;
+  //@Inject
+  //Tracer configuredTracer;
 
   @Inject
   KeyGenerator keyGenerator;
@@ -99,18 +101,18 @@ public class BookingServiceImpl implements BookingService, MongoConstants {
             .append("flightId", flightId).append("dateOfBooking", new Date())
             .append("flightSegmentId", flightSegmentId);
 
-        Span activeSpan = configuredTracer.activeSpan();
-        Tracer.SpanBuilder spanBuilder = configuredTracer.buildSpan("Created bookFlight Span");
-        if (activeSpan != null) {
-            spanBuilder.asChildOf(activeSpan.context());
-        }
+        //Span activeSpan = configuredTracer.activeSpan();
+        //Tracer.SpanBuilder spanBuilder = configuredTracer.buildSpan("Created bookFlight Span");
+        //if (activeSpan != null) {
+        //    spanBuilder.asChildOf(activeSpan.context());
+        //}
         
-        Span childSpan = spanBuilder.startManual();
-        childSpan.setTag("Created", true);
+        //Span childSpan = spanBuilder.startManual();
+        //childSpan.setTag("Created", true);
         
         bookingCollection.insertOne(bookingDoc);
         
-        childSpan.finish();
+        //childSpan.finish();
 
         return bookingId;
       } catch (Exception e) {

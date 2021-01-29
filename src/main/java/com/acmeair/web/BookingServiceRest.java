@@ -16,12 +16,13 @@
 
 package com.acmeair.web;
 
-
+import javax.annotation.security.PermitAll;
 import com.acmeair.service.BookingService;
 
 import java.io.StringReader;
 
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -42,13 +43,14 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
 
 @Path("/")
+@RequestScoped
 public class BookingServiceRest {
 
   @Inject
   BookingService bs;
 
   @Inject
-  private JsonWebToken jwt;
+  JsonWebToken jwt;
 
   @Inject 
   RewardTracker rewardTracker; 
@@ -189,6 +191,7 @@ public class BookingServiceRest {
   }
 
   @GET
+  @PermitAll
   public Response status() {
     return Response.ok("OK").build();
   }

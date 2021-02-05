@@ -1,0 +1,4 @@
+FROM tomee:8.0.6-microprofile
+COPY target/acmeair-bookingservice-java-3.3.war /usr/local/tomee/webapps/booking.war
+ENV JAVA_OPTS="-Dhttp.keepalive=true -Dhttp.maxConnections=100 -Dgeronimo.opentracing.span.converter.zipkin.logger.active=false -Dcom.acmeair.client.FlightClient/mp-rest/url=http://acmeair-nginx1/flight -Dcom.acmeair.client.CustomerClient/mp-rest/url=http://acmeair-nginx1/customer"
+RUN sed -i "s/8080/9080/g" conf/server.xml

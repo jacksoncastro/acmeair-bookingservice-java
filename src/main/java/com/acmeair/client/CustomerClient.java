@@ -21,8 +21,10 @@ import javax.enterprise.context.ApplicationScoped;
 import java.io.IOException;
 import java.time.temporal.ChronoUnit;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
@@ -37,8 +39,9 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @Path("/")
 public interface CustomerClient {  
 
-  @GET
-  @Path("/internal/updateCustomerTotalMiles/{custid}/{miles}")
+  @POST
+  @Path("/internal/updateCustomerTotalMiles/{custid}")
+  @Consumes({ "application/x-www-form-urlencoded" })
   @Produces("application/json")
   @Timeout(10000) // throws exception after 500 ms which invokes fallback handler
   @CircuitBreaker(requestVolumeThreshold=4,failureRatio=0.5,successThreshold=10,delay=1,delayUnit=ChronoUnit.SECONDS)
@@ -47,5 +50,5 @@ public interface CustomerClient {
   @Fallback(LongFallbackHandler.class)
   public MilesResponse updateCustomerTotalMiles(
       @PathParam("custid") String customerid, 
-      @PathParam("miles") Long miles);
+      @FormParam("miles") Long miles);
 }

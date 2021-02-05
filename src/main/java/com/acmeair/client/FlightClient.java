@@ -21,8 +21,8 @@ import java.time.temporal.ChronoUnit;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.GET;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -36,15 +36,16 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 @Path("/")
 @ApplicationScoped
 public interface FlightClient {
-  
-  @GET
-  @Path("/getrewardmiles/{flightSegment}")
-  @Produces("application/json")
+
+  @POST
+  @Path("/getrewardmiles")
+  @Consumes({"application/x-www-form-urlencoded"})
+  @Produces("application/json") 
   @Timeout(500) // throws exception after 500 ms which invokes fallback handler
   @CircuitBreaker(requestVolumeThreshold=4,failureRatio=0.5,successThreshold=10,delay=1,delayUnit=ChronoUnit.SECONDS)
   @Retry(maxRetries=3,delayUnit=ChronoUnit.SECONDS,delay=5,durationUnit=ChronoUnit.SECONDS,
     maxDuration=30, retryOn = Exception.class, abortOn = IOException.class)
   @Fallback(LongFallbackHandler.class)
-  public MilesResponse getRewardMiles(@PathParam("flightSegment") String segmentId);
+  public MilesResponse getRewardMiles(@FormParam("flightSegment") String segmentId);
   
 }

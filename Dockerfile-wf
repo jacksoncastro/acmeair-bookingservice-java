@@ -16,4 +16,6 @@ USER 0
 RUN chown jboss:0 /opt/jboss/wildfly/standalone/deployments/acmeair-bookingservice-java-3.3.war
 USER jboss
 
+ENV JAVA_OPTS="-Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true -Dhttp.keepalive=true -Dhttp.maxConnections=100"
+
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-c","standalone-microprofile.xml","-b", "0.0.0.0", "-bmanagement", "0.0.0.0","-Djboss.http.port=9080"]

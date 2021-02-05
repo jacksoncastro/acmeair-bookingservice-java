@@ -6,6 +6,8 @@ security:
   providers:
     - mp-jwt-auth:
         atn-token:
+        sign-token:
+          outbound:
 tracing:
     service: "helidon-service"
     log-spans: false

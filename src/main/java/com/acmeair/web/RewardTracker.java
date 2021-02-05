@@ -30,8 +30,8 @@ public class RewardTracker {
   FlightClient flightClient;
     
   //TODO: For now, use the Fault Tolerance to make this done async.
-  @Timeout(500) //throws a timeout exception if method does not return withing 400 ms
-  @Asynchronous
+  //@Timeout(500) //throws a timeout exception if method does not return withing 400 ms
+  //@Asynchronous
   public CompletionStage<Long> updateRewardMiles(String userid, String flightSegId, boolean add) throws InterruptedException  {
     
     Long miles = flightClient.getRewardMiles(flightSegId).getMiles();

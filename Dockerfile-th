@@ -1,5 +1,5 @@
 #FROM openjdk:jre-alpine
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jre
 
 ADD target/acmeair-bookingservice-java-3.3-thorntail.jar /opt/thorntail.jar
 

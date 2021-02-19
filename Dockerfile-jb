@@ -1,17 +1,12 @@
-FROM jdmcclur/jboss-eap:7.3.1-xp-1.0.0
+FROM jboss/base-jdk:11
 
-# Enable Jaeger
+ADD target/acmeair-bookingservice-java-3.3-bootable.jar /opt/jboss.jar
+
 ENV JAEGER_SERVICE_NAME=jaeger-service
 ENV JAEGER_AGENT_HOST=jaeger
 ENV JAEGER_REPORTER_LOG_SPANS=false
 ENV JAEGER_SAMPLER_TYPE=const
 ENV JAEGER_SAMPLER_PARAM=1
 
-COPY --chown=jboss target/acmeair-bookingservice-java-3.3.war ${JBOSS_HOME}/standalone/deployments/
-
-# Avoid annoying CDi INFO Message
-RUN sed -i 's/<level name="INFO"/<level name="WARN"/' ${JBOSS_HOME}/standalone/configuration/standalone-microprofile.xml
-RUN sed -i 's/8080/9080/' ${JBOSS_HOME}/standalone/configuration/standalone-microprofile.xml
-RUN cp ${JBOSS_HOME}/standalone/configuration/standalone-microprofile.xml ${JBOSS_HOME}/standalone/configuration/standalone.xml
-
-CMD ["${JBOSS_HOME}/bin/standalone.sh", "-c","standalone-microprofile.xml","-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+EXPOSE 9080 
+ENTRYPOINT ["java", "-jar", "-Dhttp.keepalive=true", "-Dhttp.maxConnections=100","-Djboss.bind.address.management=0.0.0.0", "-Djboss.bind.address=0.0.0.0","-Djboss.http.port=9080", "/opt/jboss.jar", "-Djava.net.preferIPv4Stack=true"]

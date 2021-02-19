@@ -40,7 +40,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 @Path("/")
 @RequestScoped
@@ -64,7 +64,7 @@ public class BookingServiceRest {
   @Consumes({ "application/x-www-form-urlencoded" })
   @Path("/bookflights")
   @Produces("text/plain")
-  @SimplyTimed(name = "com.acmeair.web.BookingServiceRest.bookFlights",tags = "app=bookingservice-java")
+  @Timed(name = "com.acmeair.web.BookingServiceRest.bookFlights",tags = "app=bookingservice-java")
   @RolesAllowed({"user"})
   public /* BookingInfo */ Response bookFlights(@FormParam("userid") String userid,
       @FormParam("toFlightId") String toFlightId, 
@@ -108,7 +108,7 @@ public class BookingServiceRest {
   @GET
   @Path("/bybookingnumber/{userid}/{number}")
   @Produces("text/plain")
-  @SimplyTimed(name = "com.acmeair.web.BookingServiceRest.getBookingByNumber",
+  @Timed(name = "com.acmeair.web.BookingServiceRest.getBookingByNumber",
   tags = "app=bookingservice-java") 
   @RolesAllowed({"user"})
   public Response getBookingByNumber(@PathParam("number") String number, 
@@ -131,7 +131,7 @@ public class BookingServiceRest {
   @GET
   @Path("/byuser/{user}")
   @Produces("text/plain")
-  @SimplyTimed(name = "com.acmeair.web.bookFlights.BookingServiceRest.getBookingsByUser",
+  @Timed(name = "com.acmeair.web.bookFlights.BookingServiceRest.getBookingsByUser",
   tags = "app=bookingservice-java")
   @RolesAllowed({"user"})
   public Response getBookingsByUser(@PathParam("user") String userid) {
@@ -156,7 +156,7 @@ public class BookingServiceRest {
   @Consumes({ "application/x-www-form-urlencoded" })
   @Path("/cancelbooking")
   @Produces("text/plain")
-  @SimplyTimed(name = "com.acmeair.web.bookFlights.BookingServiceRest.cancelBookingsByNumber",
+  @Timed(name = "com.acmeair.web.bookFlights.BookingServiceRest.cancelBookingsByNumber",
   tags = "app=bookingservice-java")
   @RolesAllowed({"user"})
   public Response cancelBookingsByNumber(@FormParam("number") String number, 
